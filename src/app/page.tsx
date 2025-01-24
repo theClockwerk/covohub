@@ -1,15 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { EvervaultCard, Icon } from "@/components/ui/evervault-card";
-import { FlipWords } from "@/components/ui/flip-words";
 import { RandomReveal } from "react-random-reveal";
-import { cn } from "@/lib/utils";
-import createGlobe from "cobe";
-import { useEffect, useRef } from "react";
-import { IconBrandYoutubeFilled } from "@tabler/icons-react";
-import Link from "next/link";
-import { motion } from "framer-motion";
 import { WorldMap } from "@/components/ui/world-map";
 
 export default function Home() {
@@ -20,9 +12,8 @@ export default function Home() {
         <EvervaultCard className="" text="C" />
       </div>
 
-      <div className="h-screen h-screen px-4">
-        <div className=" py-40 dark:bg-black bg-black w-full">
-          <div className="text-6xl font-normal text-red-600 dark:text-neutral-400 z-100">
+      <div className="h-screen">
+          <div className="text-6xl font-normal text-red-600 dark:text-neutral-400 z-11 absolute">
             Working everyday to <br></br>
             <RandomReveal
               isPlaying
@@ -32,6 +23,7 @@ export default function Home() {
             />{" "}
             <p>the world</p>
           </div>
+          <div className="dark:bg-black bg-black z-2">
           <WorldMap
             dots={[
               {
@@ -66,7 +58,7 @@ export default function Home() {
               },
             ]}
           />
-        </div>
+          </div>
       </div>
     </>
   );
