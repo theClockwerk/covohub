@@ -14,7 +14,6 @@ import {
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import Image, { ImageProps } from "next/image";
-import { useOutsideClick } from "@/hooks/use-outside-click";
 
 interface CarouselProps {
   items: JSX.Element[];
@@ -294,4 +293,27 @@ export const BlurImage = ({
       {...rest}
     />
   );
+};
+
+export const useOutsideClick = (
+  ref: React.RefObject<HTMLDivElement>,
+  callback: Function
+) => {
+  useEffect(() => {
+    const listener = (event: any) => {
+      // DO NOTHING if the element being clicked is the target element or their children
+      if (!ref.current || ref.current.contains(event.target)) {
+        return;
+      }
+      callback(event);
+    };
+
+    document.addEventListener("mousedown", listener);
+    document.addEventListener("touchstart", listener);
+
+    return () => {
+      document.removeEventListener("mousedown", listener);
+      document.removeEventListener("touchstart", listener);
+    };
+  }, [ref, callback]);
 };
